@@ -83,6 +83,12 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 
 
+"""""""""""""""""""""""""
+" Auto Pairs Settings"
+"""""""""""""""""""""""""
+Plug 'https://github.com/jiangmiao/auto-pairs'
+
+
 """"""""""""""""""""""""""""""""
 " Airline Status Line Settings "
 """"""""""""""""""""""""""""""""
