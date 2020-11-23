@@ -43,6 +43,8 @@ inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
+map <leader>h :noh<CR>
+
 let mapleader=','
 
 
@@ -113,12 +115,18 @@ let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
 
 
-""""""""""""""""
+"""""""""""""""""""""
 " Deoplete Settings "
-""""""""""""""""
+"""""""""""""""""""""
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup=1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+""""""""""""""""""""""
+" Vim Racer Settings "
+""""""""""""""""""""""
+Plug 'racer-rust/vim-racer'
 
 
 """""""""""""""""""""
