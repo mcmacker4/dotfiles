@@ -2,4 +2,6 @@
 	name = Hans Geel
 	email = mcmacker4@gmail.com
 [core]
-	editor = vim
+	editor = nvim
+[pull]
+	rebase = false

@@ -123,10 +123,11 @@ let g:deoplete#enable_at_startup=1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
-""""""""""""""""""""""
-" Vim Racer Settings "
-""""""""""""""""""""""
-Plug 'racer-rust/vim-racer'
+""""""""""""""""""
+" Deoplete Racer "
+""""""""""""""""""
+Plug 'sebastianmarkow/deoplete-rust'
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 
 
 """""""""""""""""""""
