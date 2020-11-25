@@ -1,6 +1,8 @@
 """"""""""""""""
 " Vim Settings "
 """"""""""""""""
+let mapleader=','
+
 set tabstop=4
 set softtabstop=4
 set expandtab
@@ -8,25 +10,12 @@ set shiftwidth=4
 set smarttab
 
 set nowrap
-set number
+set number relativenumber
 
 set autoindent
 set smartindent
 
 set shell=/bin/fish
-
-" vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-" vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-" vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-" vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-" vnoremap $q <esc>`>a'<esc>`<i'<esc>
-" vnoremap $e <esc>`>a`<esc>`<i`<esc>
-" inoremap $1 ()<esc>i
-" inoremap $2 []<esc>i
-" inoremap $3 {}<esc>i
-" inoremap $4 {<esc>o}<esc>O
-" inoremap $q ''<esc>i
-" inoremap $e ""<esc>i
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -45,7 +34,6 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 map <leader>h :noh<CR>
 
-let mapleader=','
 
 
 """""""""""""""""
@@ -127,8 +115,14 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " Deoplete Racer "
 """"""""""""""""""
 Plug 'sebastianmarkow/deoplete-rust'
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#racer_binary='/home/mcmacker4/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/mcmacker4/.local/lib/rust-src/library'
 
+""""""""""""
+" Rust Vim "
+""""""""""""
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave=1
 
 """""""""""""""""""""
 " End Plugin Loader "
