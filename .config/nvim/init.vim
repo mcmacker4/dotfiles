@@ -9,6 +9,8 @@ set expandtab
 set shiftwidth=4
 set smarttab
 
+set mouse=a
+
 set nowrap
 set number relativenumber
 
@@ -24,16 +26,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
 map <leader>h :noh<CR>
-
 
 
 """""""""""""""""
@@ -77,6 +70,7 @@ Plug 'tpope/vim-surround'
 " Auto Pairs Settings"
 """""""""""""""""""""""""
 Plug 'https://github.com/jiangmiao/auto-pairs'
+let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
 
 
 """"""""""""""""""""""""""""""""
@@ -103,26 +97,25 @@ let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
 
 
-"""""""""""""""""""""
-" Deoplete Settings "
-"""""""""""""""""""""
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup=1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"""""""""""""""""
+" YouCompleteMe "
+"""""""""""""""""
+Plug 'ycm-core/YouCompleteMe'
+set completeopt-=preview
 
-
-""""""""""""""""""
-" Deoplete Racer "
-""""""""""""""""""
-Plug 'sebastianmarkow/deoplete-rust'
-let g:deoplete#sources#rust#racer_binary='/home/mcmacker4/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/mcmacker4/.local/lib/rust-src/library'
 
 """"""""""""
 " Rust Vim "
 """"""""""""
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave=1
+
+
+"""""""""""""""""""""
+" Fish Shell Plugin "
+"""""""""""""""""""""
+Plug 'dag/vim-fish'
+
 
 """""""""""""""""""""
 " End Plugin Loader "
