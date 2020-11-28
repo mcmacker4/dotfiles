@@ -29,95 +29,40 @@ map <C-l> <C-W>l
 map <leader>h :noh<CR>
 
 
-"""""""""""""""""
-" Plugin Loader "
-"""""""""""""""""
-call plug#begin(stdpath('data') . '/plugged')
+set wildignore+=*/node_modules/*
 
 
-""""""""""""""""""""""""
-" BufExplorer Settings "
-""""""""""""""""""""""""
-Plug 'vim-scripts/bufexplorer.zip'
+" Plugin Loader
+source ~/.config/nvim/plugins.vim
+
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+
+" Coc Settings
+source ~/.config/nvim/coc-settings.vim
+
+" Theme
+colorscheme base16-atelier-dune
+
+" BufExplorer Settings
 map <leader>o :BufExplorer<CR>
 
-
-""""""""""""""""""""""""
-" Supertab Settings "
-""""""""""""""""""""""""
-Plug 'ervandew/supertab'
-
-
-"""""""""""""""""""""
-" Sensible Settings "
-"""""""""""""""""""""
-Plug 'tpope/vim-sensible'
-
-
-""""""""""""""""
-" Ack Settings "
-""""""""""""""""
-Plug 'mileszs/ack.vim'
-
-
-"""""""""""""""""""""""""
-" Surround.vim Settings "
-"""""""""""""""""""""""""
-Plug 'tpope/vim-surround'
-
-
-"""""""""""""""""""""""""
-" Auto Pairs Settings"
-"""""""""""""""""""""""""
-Plug 'https://github.com/jiangmiao/auto-pairs'
+" Auto Pairs Settings
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
 
-
-""""""""""""""""""""""""""""""""
-" Airline Status Line Settings "
-""""""""""""""""""""""""""""""""
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Airline Status Line Settings
 let g:airline_powerline_fonts=1
-let g:airline_theme='powerlineish'
+let g:airline_theme='base16_atelierdune'
+let g:airline#extensions#coc#enabled = 1
 
-
-"""""""""""""""""""""
-" NERDTree Settings "
-"""""""""""""""""""""
-Plug 'preservim/nerdtree'
+" NERDTree Settings
 map <leader>n :NERDTreeFocus<CR>
+map <leader><C-n> :NERDTreeToggle<CR>
 
-
-""""""""""""""""
-" ALE Settings "
-""""""""""""""""
-Plug 'dense-analysis/ale'
+" ALE Settings
 let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
 
-
-"""""""""""""""""
-" YouCompleteMe "
-"""""""""""""""""
-Plug 'ycm-core/YouCompleteMe'
-set completeopt-=preview
-
-
-""""""""""""
-" Rust Vim "
-""""""""""""
-Plug 'rust-lang/rust.vim'
+" Rust Vim
 let g:rustfmt_autosave=1
 
-
-"""""""""""""""""""""
-" Fish Shell Plugin "
-"""""""""""""""""""""
-Plug 'dag/vim-fish'
-
-
-"""""""""""""""""""""
-" End Plugin Loader "
-"""""""""""""""""""""
-call plug#end()
