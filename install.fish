@@ -8,7 +8,7 @@ echo $SCRIPT_DIR
 function confirm --description "Confirmation prompt helper function."
     set -l message $argv[1]
     while true
-        read -l -P "$message [y/N] " confirm
+        read -l -P "$message [Y/n] " confirm
         switch $confirm
             case '' Y y
                 return 0
@@ -32,9 +32,8 @@ end
 
 function alacritty --description "Install Alacritty package and link config files."
     if confirm "Use Alacritty?"
-        if confirm "Install Alacritty using Pacman?"
-            sudo pacman -S alacritty --needed
-        end
+        confirm "Install Alacritty using Pacman?"; 
+            and sudo pacman -S alacritty --needed
 
         echo "WARNING: Alacritty is configured by default to start Tmux. If you are not using tmux please change the appropiate configuration at ~/.config/alacritty/alacritty.yml"
 
@@ -47,13 +46,11 @@ end
 
 function neovim --description "Install Neovim package and link config files."
     if confirm "Use Neovim?"
-        if confirm "Install Neovim using Pacman?"
-            sudo pacman -S neovim --needed
-        end
+        confirm "Install Neovim using Pacman?"
+            and sudo pacman -S neovim --needed
 
-        if confirm "Install NodeJS using Pacman?"
-            sudo pacman -S nodejs npm --needed
-        end
+        confirm "Install NodeJS using Pacman?"
+            and sudo pacman -S nodejs npm --needed
 
         mkdir -p "$HOME/.config/nvim"
 
@@ -76,10 +73,16 @@ function tmux --description "Install Tmux package and link config files."
     end
 end
 
+function install_powerline_rs
+    sudo pacman -S rustup
+    rustup install stable
+    cargo install powerline-rs
+end
+
 function fish_shell --description "Install fish shell dependencies and config files."
 
-    if confirm "Install powerline-rs using Paru?"
-        paru -S powerline-rs --needed
+    if confirm "Install powerline-rs? This will install Rustup, rust stable toolchain and powerline-rs using cargo."
+        install_powerline_rs
     else
         echo "WARNING: Fish config files use powerline-rs as the prompt. If you do not want this please delete ~/.config/fish/conf.d/fish_prompt.fish after installation."
     end
