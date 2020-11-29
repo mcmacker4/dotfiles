@@ -33,7 +33,7 @@ end
 function alacritty --description "Install Alacritty package and link config files."
     if confirm "Use Alacritty?"
         if confirm "Install Alacritty using Pacman?"
-            sudo pacman -S alacritty
+            sudo pacman -S alacritty --needed
         end
 
         echo "WARNING: Alacritty is configured by default to start Tmux. If you are not using tmux please change the appropiate configuration at ~/.config/alacritty/alacritty.yml"
@@ -48,7 +48,11 @@ end
 function neovim --description "Install Neovim package and link config files."
     if confirm "Use Neovim?"
         if confirm "Install Neovim using Pacman?"
-            sudo pacman -S neovim
+            sudo pacman -S neovim --needed
+        end
+
+        if confirm "Install NodeJS using Pacman?"
+            sudo pacman -S nodejs npm --needed
         end
 
         mkdir -p "$HOME/.config/nvim"
@@ -75,7 +79,7 @@ end
 function fish_shell --description "Install fish shell dependencies and config files."
 
     if confirm "Install powerline-rs using Paru?"
-        paru -S powerline-rs
+        paru -S powerline-rs --needed
     else
         echo "WARNING: Fish config files use powerline-rs as the prompt. If you do not want this please delete ~/.config/fish/conf.d/fish_prompt.fish after installation."
     end
@@ -87,4 +91,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
 
 end
 
+fish_shell
+tmux
 alacritty
+neovim
