@@ -76,19 +76,21 @@ function tmux --description "Install Tmux package and link config files."
 end
 
 function install_powerline_rs
-    sudo pacman -S rustup base-devel --needed
-    rustup install stable
+    if not type -q cargo
+        sudo pacman -S rustup
+        rustup install stable
+    end
     cargo install powerline-rs
 end
 
 function fish_shell --description "Install fish shell dependencies and config files."
 
+    mkdir -p "$HOME/.config/fish/conf.d"
+
     if confirm "Use powerline-rs? This will install Rustup, rust stable toolchain and powerline-rs using cargo."
         install_powerline_rs
         linkfile ".config/fish/conf.d/fish_prompt.fish"
     end
-
-    mkdir -p "$HOME/.config/fish/conf.d"
 
     linkfile ".config/fish/conf.d/alias.fish"
 
