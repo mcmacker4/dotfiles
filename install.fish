@@ -47,7 +47,7 @@ end
 function neovim --description "Install Neovim package and link config files."
     if confirm "Use Neovim?"
         if confirm "Install Neovim using Pacman?"
-            pacman -S neovim --needed
+            sudo pacman -S neovim --needed
         end
 
         if confirm "Install NodeJS using Pacman?"
@@ -83,15 +83,13 @@ end
 
 function fish_shell --description "Install fish shell dependencies and config files."
 
-    if confirm "Install powerline-rs? This will install Rustup, rust stable toolchain and powerline-rs using cargo."
+    if confirm "Use powerline-rs? This will install Rustup, rust stable toolchain and powerline-rs using cargo."
         install_powerline_rs
-    else
-        echo "WARNING: Fish config files use powerline-rs as the prompt. If you do not want this please delete ~/.config/fish/conf.d/fish_prompt.fish after installation."
+        linkfile ".config/fish/conf.d/fish_prompt.fish"
     end
 
     mkdir -p "$HOME/.config/fish/conf.d"
 
-    linkfile ".config/fish/conf.d/fish_prompt.fish"
     linkfile ".config/fish/conf.d/alias.fish"
 
 end
