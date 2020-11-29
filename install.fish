@@ -2,13 +2,12 @@
 
 set -l SCRIPT_DIR (realpath (dirname (status -f)))
 
-echo $SCRIPT_DIR
-
 
 function confirm --description "Confirmation prompt helper function."
     set -l message $argv[1]
     while true
-        read -l -P "$message [Y/n] " confirm
+        echo $message
+        read -l -P "[Y/n] " confirm
         switch $confirm
             case '' Y y
                 return 0
@@ -32,8 +31,9 @@ end
 
 function alacritty --description "Install Alacritty package and link config files."
     if confirm "Use Alacritty?"
-        confirm "Install Alacritty using Pacman?"; 
-            and sudo pacman -S alacritty --needed
+        if confirm "Install Alacritty using Pacman?"; 
+            sudo pacman -S alacritty --needed
+        end
 
         echo "WARNING: Alacritty is configured by default to start Tmux. If you are not using tmux please change the appropiate configuration at ~/.config/alacritty/alacritty.yml"
 
@@ -46,11 +46,13 @@ end
 
 function neovim --description "Install Neovim package and link config files."
     if confirm "Use Neovim?"
-        confirm "Install Neovim using Pacman?"
-            and sudo pacman -S neovim --needed
+        if confirm "Install Neovim using Pacman?"
+            pacman -S neovim --needed
+        end
 
-        confirm "Install NodeJS using Pacman?"
-            and sudo pacman -S nodejs npm --needed
+        if confirm "Install NodeJS using Pacman?"
+            sudo pacman -S nodejs npm --needed
+        end
 
         mkdir -p "$HOME/.config/nvim"
 
@@ -74,7 +76,7 @@ function tmux --description "Install Tmux package and link config files."
 end
 
 function install_powerline_rs
-    sudo pacman -S rustup
+    sudo pacman -S rustup base-devel --needed
     rustup install stable
     cargo install powerline-rs
 end
