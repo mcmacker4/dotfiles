@@ -1,6 +1,6 @@
 #!/bin/fish
 
-set -l SCRIPT_DIR (realpath (dirname (status -f)))
+set SCRIPT_DIR (realpath (dirname (status -f)))
 
 
 function confirm --description "Confirmation prompt helper function."
@@ -18,14 +18,17 @@ function confirm --description "Confirmation prompt helper function."
 end
 
 function linkfile --description "Takes an argument, creates symlink asking to replace if file exists."
-    set -l file $argv[1]
-    if test -e "$HOME/$file"
-        if confirm "File $file already exists. Replace?"
+    set -l filename $argv[1]
+    set -l file "$HOME/$filename"
+    if begin test -L $file; or test -f $file; end
+        if confirm "File $filename already exists. Replace?"
             rm $file
-            ln -s "$SCRIPT_DIR/$file" "$HOME/$file"
+            echo "$SCRIPT_DIR/$filename -> $file"
+            ln -s "$SCRIPT_DIR/$filename" $file
         end
     else
-        ln -s "$SCRIPT_DIR/$file" "$HOME/$file"
+        echo "$SCRIPT_DIR/$filename -> $file"
+        ln -s "$SCRIPT_DIR/$filename" $file
     end
 end
 
@@ -95,6 +98,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
     linkfile ".config/fish/conf.d/alias.fish"
 
 end
+
 
 fish_shell
 tmux
