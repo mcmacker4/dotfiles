@@ -81,7 +81,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
 
     if confirm "Use powerline-rs? This will install Rustup, rust stable toolchain and powerline-rs using cargo."
         if not type -q cargo
-            install rustup
+            install rustup base-devel
             rustup install stable
         end
         cargo install powerline-rs
