@@ -32,7 +32,7 @@ function linkfile --description "Takes an argument, creates symlink asking to re
 end
 
 function install --description "Install package using Pacman"
-    sudo pacman -S --needed $argv
+    sudo pacman -S --needed --noconfirm $argv
 end
 
 function alacritty --description "Install Alacritty package and link config files."
@@ -50,9 +50,7 @@ end
 
 function neovim --description "Install Neovim package and link config files."
     if confirm "Use Neovim?"
-        install neovim
-
-        install nodejs npm
+        install neovim nodejs npm
 
         mkdir -p "$HOME/.config/nvim"
 
