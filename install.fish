@@ -4,6 +4,7 @@ set SCRIPT_DIR (realpath (dirname (status -f)))
 
 function confirm --description "Confirmation prompt helper function."
     set -l message $argv[1]
+    echo "===================================="
     while true
         echo $message
         read -l -P "[Y/n] " confirm
@@ -36,48 +37,34 @@ function install --description "Install package using Pacman"
 end
 
 function alacritty --description "Install Alacritty package and link config files."
-    if confirm "Use Alacritty?"
-        install alacritty
-
-        echo "WARNING: Alacritty is configured by default to start Tmux. If you are not using tmux please change the appropiate configuration at ~/.config/alacritty/alacritty.yml"
-
-        mkdir -p "$HOME/.config/alacritty"
-
-        linkfile ".config/alacritty/alacritty.yml"
-
-    end
+    install alacritty
+    echo "WARNING: Alacritty is configured by default to start Tmux. If you are not using tmux please change the appropiate configuration at ~/.config/alacritty/alacritty.yml"
+    mkdir -p "$HOME/.config/alacritty"
+    linkfile ".config/alacritty/alacritty.yml"
 end
 
 function neovim --description "Install Neovim package and link config files."
-    if confirm "Use Neovim?"
-        install neovim nodejs npm
+    install neovim nodejs npm
+        
+    mkdir -p "$HOME/.config/nvim"
 
-        mkdir -p "$HOME/.config/nvim"
-
-        linkfile ".config/nvim/init.vim"
-        linkfile ".config/nvim/plugins.vim"
-        linkfile ".config/nvim/coc-settings.vim"
-
-    end
+    linkfile ".config/nvim/init.vim"
+    linkfile ".config/nvim/plugins.vim"
+    linkfile ".config/nvim/coc-settings.vim"
 end
 
 
 function tmux --description "Install Tmux package and link config files."
-    if confirm "Use Tmux?"
-        install tmux
-        git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
-        linkfile ".tmux.conf"
-    end
+    install tmux
+    git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
+    linkfile ".tmux.conf"
 end
 
-function install_powerline_rs
-end
 
 function fish_shell --description "Install fish shell dependencies and config files."
-
     mkdir -p "$HOME/.config/fish/conf.d"
 
-    if confirm "Use powerline-rs? This will install Rustup, rust stable toolchain and powerline-rs using cargo."
+    if confirm "Use powerline-rs?"
         if not type -q cargo
             install rustup base-devel
             rustup install stable
@@ -87,11 +74,11 @@ function fish_shell --description "Install fish shell dependencies and config fi
     end
 
     linkfile ".config/fish/conf.d/alias.fish"
-
 end
 
 
-fish_shell
-tmux
-alacritty
-neovim
+confirm "Configure Fish Shell?"; and fish_shell
+confirm "Configure Tmux?"; and tmux
+confirm "Configure Alacritty?"; and alacritty
+confirm "Configure NeoVim?"; and neovim
+
