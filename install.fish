@@ -85,6 +85,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
 
         cargo install powerline-rs
         linkfile ".config/fish/conf.d/fish_prompt.fish"
+        linkfile ".config/fish/conf.d/abbr.fish"
     end
 
     echo "set PATH \$PATH ~/.cargo/bin" >> ~/.config/fish/conf.d/path.fish
