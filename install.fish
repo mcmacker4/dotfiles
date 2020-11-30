@@ -56,7 +56,7 @@ end
 
 function tmux --description "Install Tmux package and link config files."
     install tmux
-    git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     linkfile ".tmux.conf"
 end
 
