@@ -77,7 +77,8 @@ function fish_shell --description "Install fish shell dependencies and config fi
 
         install unzip
         curl -Lo $SCRIPT_DIR/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-        sudo unzip $SCRIPT_DIR/Hack.zip /usr/share/fonts/nerd-hack
+        sudo unzip $SCRIPT_DIR/Hack.zip -d /usr/share/fonts/nerd-hack
+        sudo fc-cache --force
         rm $SCRIPT_DIR/Hack.zip
 
         cargo install powerline-rs
