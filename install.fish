@@ -1,6 +1,7 @@
 #!/bin/fish
 
 set SCRIPT_DIR (realpath (dirname (status -f)))
+set -q XDG_DATA_HOME; or set XDG_DATA_HOME $HOME/.local/share
 
 function confirm --description "Confirmation prompt helper function."
     set -l message $argv[1]
@@ -48,6 +49,10 @@ function neovim --description "Install Neovim package and link config files."
         
     mkdir -p "$HOME/.config/nvim"
 
+    # Install Plug.vim
+    curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
     linkfile ".config/nvim/init.vim"
     linkfile ".config/nvim/plugins.vim"
     linkfile ".config/nvim/coc-settings.vim"
@@ -71,7 +76,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
         end
 
         install unzip
-        curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip > $SCRIPT_DIR/Hack.zip
+        curl -Lo $SCRIPT_DIR/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
         sudo unzip $SCRIPT_DIR/Hack.zip /usr/share/fonts/nerd-hack
         rm $SCRIPT_DIR/Hack.zip
 
@@ -82,7 +87,6 @@ function fish_shell --description "Install fish shell dependencies and config fi
     echo "set PATH \$PATH ~/.cargo/bin" >> ~/.config/fish/conf.d/path.fish
     linkfile ".config/fish/conf.d/alias.fish"
 end
-
 
 confirm "Configure Fish Shell?"; and fish_shell
 confirm "Configure Tmux?"; and tmux
