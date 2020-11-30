@@ -69,7 +69,11 @@ function fish_shell --description "Install fish shell dependencies and config fi
             install rustup base-devel
             rustup install stable
         end
-        # TODO: Install Hack Nerd Font from https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
+
+        install unzip
+        curl -L https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip > /tmp/dotfiles/Hack.zip
+        sudo unzip /tmp/dotfiles/Hack.zip /usr/share/fonts/nerd-hack
+
         cargo install powerline-rs
         linkfile ".config/fish/conf.d/fish_prompt.fish"
     end
