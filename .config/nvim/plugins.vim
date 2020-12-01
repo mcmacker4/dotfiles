@@ -2,7 +2,6 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'ervandew/supertab'
 Plug 'tpope/vim-sensible'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
@@ -14,7 +13,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 
 Plug 'preservim/nerdtree'
-Plug 'dense-analysis/ale'
 
 Plug 'neoclide/coc.nvim'
 

@@ -28,6 +28,11 @@ map <C-l> <C-W>l
 
 map <leader>h :noh<CR>
 
+" Proper search
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
 
 set wildignore+=*/node_modules/*
 
@@ -38,11 +43,21 @@ source ~/.config/nvim/plugins.vim
 " set filetypes as typescriptreact
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 
+" Search results centered please
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
 " Coc Settings
 source ~/.config/nvim/coc-settings.vim
 
 " Theme
-colorscheme base16-atelier-dune
+set background=dark
+colorscheme base16-gruvbox-dark-hard
+syntax on
+hi Normal ctermbg=NONE
 
 " BufExplorer Settings
 map <leader>o :BufExplorer<CR>

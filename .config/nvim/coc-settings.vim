@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-rls', 'coc-tsserver']
 
 " TextEdit might fail if hidden is not set.
 set hidden

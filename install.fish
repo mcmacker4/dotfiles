@@ -33,6 +33,13 @@ function linkfile --description "Takes an argument, creates symlink asking to re
     end
 end
 
+function require_rust
+    if not type -q cargo
+        install rustup base-devel
+        rustup install stable
+    end
+end
+
 function install --description "Install package using Pacman"
     sudo pacman -S --needed --noconfirm $argv
 end
@@ -53,6 +60,9 @@ function neovim --description "Install Neovim package and link config files."
     curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+    require_rust
+    rustup component add rls rust-analysis rust-src
+
     linkfile ".config/nvim/init.vim"
     linkfile ".config/nvim/plugins.vim"
     linkfile ".config/nvim/coc-settings.vim"
@@ -72,10 +82,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
     mkdir -p "$HOME/.config/fish/conf.d"
 
     if confirm "Use powerline-rs?"
-        if not type -q cargo
-            install rustup base-devel
-            rustup install stable
-        end
+        require_rust
 
         install unzip
         curl -Lo $SCRIPT_DIR/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
