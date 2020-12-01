@@ -1,5 +1,6 @@
 # General
 abbr e "exit"
+abbr c "clear"
 
 # Git
 abbr gd "git diff -M"

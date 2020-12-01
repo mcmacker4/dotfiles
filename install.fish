@@ -2,6 +2,7 @@
 
 set SCRIPT_DIR (realpath (dirname (status -f)))
 set -q XDG_DATA_HOME; or set XDG_DATA_HOME $HOME/.local/share
+set -q TPM_PATH; or set TPM_PATH $HOME/.tmux/plugins/tpm
 
 function confirm --description "Confirmation prompt helper function."
     set -l message $argv[1]
@@ -21,7 +22,13 @@ end
 function linkfile --description "Takes an argument, creates symlink asking to replace if file exists."
     set -l filename $argv[1]
     set -l file "$HOME/$filename"
-    if begin test -L $file; or test -f $file; end
+    if test -L $file
+        set -l linkpath (readlink $file)
+        if [ linkpath != "$SCRIPT_DIR/$filename" ]
+            unlink $file
+            ln -s "$SCRIPT_DIR/$filename" $file
+        end
+    else if test -f $file
         if confirm "File $filename already exists. Replace?"
             rm $file
             echo "$SCRIPT_DIR/$filename -> $file"
@@ -73,7 +80,9 @@ end
 
 function tmux --description "Install Tmux package and link config files."
     install tmux
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    if not test -d $TPM_PATH
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    end
     linkfile ".tmux.conf"
 end
 
