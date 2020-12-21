@@ -26,7 +26,9 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+map <leader>s :Ack<Space>
 map <leader>h :noh<CR>
+map <leader>w :wa<CR>
 
 " Proper search
 set incsearch
@@ -42,6 +44,10 @@ source ~/.config/nvim/plugins.vim
 
 " set filetypes as typescriptreact
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+
+" Set CtrlP to search buffers and files at the same time
+let g:ctrlp_cmd = 'CtrlP :pwd'
+let g:ctrlp_max_files = 0
 
 " Search results centered please
 nnoremap <silent> n nzz
