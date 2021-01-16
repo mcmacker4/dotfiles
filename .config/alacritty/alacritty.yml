@@ -5,8 +5,9 @@
 # These configuration files will be loaded in order, replacing values in files
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
-#import:
-#  - /path/to/alacritty.yml
+import:
+# - /home/mcmacker4/.config/alacritty/base16-themes/colors/base16-espresso.yml
+  - /home/mcmacker4/.config/alacritty/base16-themes/colors/base16-framer.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -69,7 +70,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -148,7 +149,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -172,44 +173,6 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
-
-# Colors (Tomorrow Night)
-# Base16 Atelier Dune - alacritty color config
-# Bram de Haan (http://atelierbramdehaan.nl)
-colors:
-  # Default colors
-  primary:
-    background: '0x20201d'
-    foreground: '0xa6a28c'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x20201d'
-    cursor: '0xa6a28c'
-
-  # Normal colors
-  normal:
-    black:   '0x20201d'
-    red:     '0xd73737'
-    green:   '0x60ac39'
-    yellow:  '0xae9513'
-    blue:    '0x6684e1'
-    magenta: '0xb854d4'
-    cyan:    '0x1fad83'
-    white:   '0xa6a28c'
-
-  # Bright colors
-  bright:
-    black:   '0x7d7a68'
-    red:     '0xb65611'
-    green:   '0x292824'
-    yellow:  '0x6e6b5e'
-    blue:    '0x999580'
-    magenta: '0xe8e4cf'
-    cyan:    '0xd43552'
-    white:   '0xfefbec'
-
-draw_bold_text_with_bright_colors: false
 
 #colors:
   # Default colors

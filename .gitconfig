@@ -7,3 +7,5 @@
 	rebase = false
 [advice]
 	addIgnoreFile = false
+[init]
+	defaultBranch = master

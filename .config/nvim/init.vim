@@ -29,6 +29,7 @@ map <C-l> <C-W>l
 map <leader>s :Ack<Space>
 map <leader>h :noh<CR>
 map <leader>w :wa<CR>
+map <leader>f :Format<CR>
 
 " Proper search
 set incsearch
@@ -41,6 +42,8 @@ set wildignore+=*/node_modules/*
 
 " Plugin Loader
 source ~/.config/nvim/plugins.vim
+
+source ~/.config/nvim/treesitter.vim
 
 " set filetypes as typescriptreact
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
@@ -56,25 +59,40 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
+" Move lines up or down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" CMake Build
+nnoremap <F5> :CMakeGenerate<CR>
+nnoremap <F6> :CMakeBuild -j4<CR>
+
 " Coc Settings
 source ~/.config/nvim/coc-settings.vim
 
+" Run Coc Format when leaving insert mode
+" autocmd InsertLeave * Format
+
 " Theme
 set background=dark
-colorscheme base16-gruvbox-dark-hard
 syntax on
 hi Normal ctermbg=NONE
+set termguicolors
+colorscheme base16-helios
+" Airline Status Line Settings
+let g:airline_powerline_fonts=1
+let g:airline_theme='term'
+let g:airline#extensions#coc#enabled = 1
 
 " BufExplorer Settings
 map <leader>o :BufExplorer<CR>
 
 " Auto Pairs Settings
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
-
-" Airline Status Line Settings
-let g:airline_powerline_fonts=1
-let g:airline_theme='base16_atelierdune'
-let g:airline#extensions#coc#enabled = 1
 
 " NERDTree Settings
 map <leader>n :NERDTreeFocus<CR>

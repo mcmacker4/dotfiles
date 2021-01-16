@@ -56,6 +56,7 @@ function alacritty --description "Install Alacritty package and link config file
     echo "WARNING: Alacritty is configured by default to start Tmux. If you are not using tmux please change the appropiate configuration at ~/.config/alacritty/alacritty.yml"
     mkdir -p "$HOME/.config/alacritty"
     linkfile ".config/alacritty/alacritty.yml"
+    linkfile ".config/alacritty/base16-themes"
 end
 
 function neovim --description "Install Neovim package and link config files."
@@ -73,6 +74,7 @@ function neovim --description "Install Neovim package and link config files."
     linkfile ".config/nvim/init.vim"
     linkfile ".config/nvim/plugins.vim"
     linkfile ".config/nvim/coc-settings.vim"
+    linkfile ".config/nvim/coc-settings.json"
     
     nvim +PlugInstall +qall
 end

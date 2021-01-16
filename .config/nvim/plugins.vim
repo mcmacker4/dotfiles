@@ -1,26 +1,28 @@
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'vim-scripts/bufexplorer.zip'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-sensible'
 Plug 'mileszs/ack.vim'
+
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'tikhomirov/vim-glsl'
 
 Plug 'chriskempson/base16-vim'
 
 Plug 'preservim/nerdtree'
 
+Plug 'cdelledonne/vim-cmake'
+
 Plug 'neoclide/coc.nvim'
-
-Plug 'rust-lang/rust.vim'
-
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'dag/vim-fish'
 
