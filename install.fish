@@ -75,6 +75,7 @@ function neovim --description "Install Neovim package and link config files."
     linkfile ".config/nvim/plugins.vim"
     linkfile ".config/nvim/coc-settings.vim"
     linkfile ".config/nvim/coc-settings.json"
+    linkfile ".config/nvim/treesitter.vim"
     
     nvim +PlugInstall +qall
 end
