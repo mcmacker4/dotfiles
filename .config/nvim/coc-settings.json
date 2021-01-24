@@ -19,5 +19,16 @@
                 }
             }
         }
-    }
+    },
+    "eslint.packageManager": "yarn",
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "typescript.jsx",
+        "html",
+        "vue",
+        "markdown"
+    ]
 }
