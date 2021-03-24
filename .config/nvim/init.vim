@@ -97,11 +97,12 @@ let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
 " NERDTree Settings
 map <leader>n :NERDTreeFocus<CR>
 map <leader><C-n> :NERDTreeToggle<CR>
+" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
 " ALE Settings
 let g:ale_completion_enabled=1
 let g:airline#extensions#ale#enabled=1
 
 " Rust Vim
-let g:rustfmt_autosave=1
+" let g:rustfmt_autosave=1
 

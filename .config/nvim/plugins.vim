@@ -19,6 +19,7 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'chriskempson/base16-vim'
 
 Plug 'preservim/nerdtree'
+" Plug 'mcchrish/nnn.vim'
 
 Plug 'cdelledonne/vim-cmake'
 
