@@ -40,6 +40,11 @@ function linkfile --description "Takes an argument, creates symlink asking to re
     end
 end
 
+function add_path
+    set newpath $argv[1]
+    echo "set PATH \$PATH \"$newpath\"" >> ~/.config/fish/conf.d/path.fish
+end
+
 function require_rust
     if not type -q cargo
         install rustup base-devel
@@ -61,6 +66,11 @@ end
 
 function neovim --description "Install Neovim package and link config files."
     install nodejs npm
+
+    mkdir -p "$HOME/Programs"
+    curl -fL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz \
+        | tar -xf - --directory "$HOME/Programs/"
+    add_path "$HOME/Programs/nvim-linux64/bin"
         
     mkdir -p "$HOME/.config/nvim"
 
@@ -107,7 +117,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
         linkfile ".config/fish/conf.d/abbr.fish"
     end
 
-    echo "set PATH \$PATH ~/.cargo/bin" >> ~/.config/fish/conf.d/path.fish
+    add_path "~/.cargo/bin"
     linkfile ".config/fish/conf.d/alias.fish"
 end
 
