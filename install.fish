@@ -60,7 +60,7 @@ function alacritty --description "Install Alacritty package and link config file
 end
 
 function neovim --description "Install Neovim package and link config files."
-    install neovim nodejs npm
+    install nodejs npm
         
     mkdir -p "$HOME/.config/nvim"
 
@@ -103,7 +103,7 @@ function fish_shell --description "Install fish shell dependencies and config fi
         rm $SCRIPT_DIR/Hack.zip
 
         cargo install powerline-rs
-        linkfile ".config/fish/conf.d/fish_prompt.fish"
+        linkfile ".config/fish/functions/fish_prompt.fish"
         linkfile ".config/fish/conf.d/abbr.fish"
     end
 
