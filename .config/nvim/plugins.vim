@@ -23,7 +23,7 @@ Plug 'preservim/nerdtree'
 
 Plug 'cdelledonne/vim-cmake'
 
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 Plug 'dag/vim-fish'
 
